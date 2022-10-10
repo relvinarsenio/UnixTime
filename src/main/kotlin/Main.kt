@@ -7,7 +7,7 @@ fun main() {
     val date: String = SimpleDateFormat("EEEE, dd MMMM yyyy").format(Date())
     val time: String = SimpleDateFormat("HH:mm:ss").format(Date())
     val timeZone: ZoneId = systemDefault().normalized()
-    val currentTimestamp: ULong = System.currentTimeMillis().toULong() / 1000u
+    val currentTimestamp: Long = System.currentTimeMillis() / 1000
 
     println("Unix Timestamp Di Kotlin")
     println("Tanggal: $date")
