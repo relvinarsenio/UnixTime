@@ -1,17 +1,26 @@
-import java.text.SimpleDateFormat
+import java.time.LocalDateTime
 import java.time.ZoneId
-import java.time.ZoneId.systemDefault
-import java.util.*
+import java.time.format.DateTimeFormatter
 
-fun main() {
-    val date: String = SimpleDateFormat("EEEE, dd MMMM yyyy").format(Date())
-    val time: String = SimpleDateFormat("HH:mm:ss z").format(Date())
-    val timeZone: ZoneId = systemDefault().normalized()
-    val currentTimestamp: Long = System.currentTimeMillis() / 1000
+class Main {
+    companion object {
+        @JvmStatic
+        fun main(args: Array<String>) {
+            val currentDateTime = LocalDateTime.now()
+            val currentZone = ZoneId.systemDefault()
+            val currentZoneName = currentZone.id
 
-    println("Unix Timestamp Di Kotlin")
-    println("Tanggal: $date")
-    println("Jam: $time")
-    println("Zona Waktu: $timeZone")
-    println("Dalam Detik: $currentTimestamp")
+            val dateFormatter = DateTimeFormatter.ofPattern("EEEE, dd MMMM yyyy")
+            val timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss zzz")
+            val formattedDate = currentDateTime.atZone(currentZone).format(dateFormatter)
+            val formattedTime = currentDateTime.atZone(currentZone).format(timeFormatter)
+            val unixTimestamp = currentDateTime.atZone(currentZone).toEpochSecond()
+
+            println("Unix Timestamp Di Kotlin")
+            println("Tanggal: $formattedDate")
+            println("Jam: $formattedTime")
+            println("Zona Waktu: $currentZoneName")
+            println("Dalam Detik: $unixTimestamp")
+        }
+    }
 }
