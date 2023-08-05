@@ -11,7 +11,7 @@ Proyek ini menggunakan pustaka `java.time` yang ada dalam Java untuk memanipulas
 ## Cara Penggunaan
 
 1. Pastikan Anda memiliki lingkungan pengembangan Kotlin dan Gradle yang sudah terpasang di komputer Anda.
-2. Clone repositori ini ke komputer Anda dengan menjalankan perintah berikut: `git clone https://github.com/nama-akun-anda/nama-repositori.git`
+2. Clone repositori ini ke komputer Anda dengan menjalankan perintah berikut: `git clone https://github.com/RelvinArsenio/UnixTime.git`
 3. Jalankan perintah `./gradlew run` di direktori proyek Anda.
 4. Aplikasi akan menghasilkan informasi Unix Timestamp saat ini, tanggal, waktu, dan zona waktu.
 
