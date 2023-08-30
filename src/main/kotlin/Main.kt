@@ -1,26 +1,27 @@
-import java.time.LocalDateTime
+import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
+import java.util.Locale
 
-class Main {
-    companion object {
-        @JvmStatic
-        fun main(args: Array<String>) {
-            val currentDateTime = LocalDateTime.now()
-            val currentZone = ZoneId.systemDefault()
-            val currentZoneName = currentZone.id
-
-            val dateFormatter = DateTimeFormatter.ofPattern("EEEE, dd MMMM yyyy")
-            val timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss zzz")
-            val formattedDate = currentDateTime.atZone(currentZone).format(dateFormatter)
-            val formattedTime = currentDateTime.atZone(currentZone).format(timeFormatter)
-            val unixTimestamp = currentDateTime.atZone(currentZone).toEpochSecond()
-
-            println("Unix Timestamp Di Kotlin")
-            println("Tanggal: $formattedDate")
-            println("Jam: $formattedTime")
-            println("Zona Waktu: $currentZoneName")
-            println("Dalam Detik: $unixTimestamp")
-        }
-    }
+fun main() {
+    val timestamp = Instant.now().epochSecond
+    val zoneId = ZoneId.systemDefault()
+    val dateTime = Instant.ofEpochSecond(timestamp).atZone(zoneId)
+    
+    val dateFormatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)
+        .withLocale(Locale.getDefault())
+    val timeFormatter = DateTimeFormatter.ofLocalizedTime(FormatStyle.LONG)
+        .withLocale(Locale.getDefault())
+    
+    val date = dateTime.format(dateFormatter)
+    val time = dateTime.format(timeFormatter)
+    val timeZone = dateTime.zone
+    val inSeconds = timestamp.toString()
+    
+    println("Displaying time in Kotlin based on system format")
+    println("Date: $date")
+    println("Time: $time")
+    println("Time Zone: $timeZone")
+    println("In Seconds: $inSeconds")
 }
