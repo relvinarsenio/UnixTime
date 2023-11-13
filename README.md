@@ -17,4 +17,4 @@ Proyek ini menggunakan pustaka `java.time` yang ada dalam Java untuk memanipulas
 
 ## Lisensi
 
-Lisensi proyek ini diatur oleh [Microsoft Reciprocal License](LICENSE). Mohon lihat berkas lisensi untuk mendapatkan informasi lebih lanjut.
+Lisensi proyek ini diatur oleh [Eclipse Public License 2.0](LICENSE). Mohon lihat berkas lisensi untuk mendapatkan informasi lebih lanjut.
