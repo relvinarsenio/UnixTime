@@ -5,23 +5,23 @@ import java.time.format.FormatStyle
 import java.util.Locale
 
 fun main() {
-    val timestamp = Instant.now().epochSecond
-    val zoneId = ZoneId.systemDefault()
-    val dateTime = Instant.ofEpochSecond(timestamp).atZone(zoneId)
-    
+    val dateTime = Instant.now().atZone(ZoneId.systemDefault())
+
     val dateFormatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)
         .withLocale(Locale.getDefault())
     val timeFormatter = DateTimeFormatter.ofLocalizedTime(FormatStyle.LONG)
         .withLocale(Locale.getDefault())
-    
-    val date = dateTime.format(dateFormatter)
-    val time = dateTime.format(timeFormatter)
-    val timeZone = dateTime.zone
-    val inSeconds = timestamp.toString()
-    
+
+    val isoFormatter = DateTimeFormatter.ISO_ZONED_DATE_TIME
+
     println("Displaying time in Kotlin based on system format")
-    println("Date: $date")
-    println("Time: $time")
-    println("Time Zone: $timeZone")
-    println("In Seconds: $inSeconds")
+    println("Date       : ${dateTime.format(dateFormatter)}")
+    println("Time       : ${dateTime.format(timeFormatter)}")
+    println("Time Zone  : ${dateTime.zone}")
+    println("Epoch Sec  : ${dateTime.toEpochSecond()}")
+    println("ISO 8601   : ${dateTime.format(isoFormatter)}")
+
+    // Convert ke UTC
+    val utcDateTime = dateTime.withZoneSameInstant(ZoneId.of("UTC"))
+    println("UTC Time   : ${utcDateTime.format(isoFormatter)}")
 }
